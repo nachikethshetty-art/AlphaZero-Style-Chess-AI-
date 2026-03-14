@@ -141,8 +141,7 @@ AlphaZero-Style-Chess-AI
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/nachikethshetty-art/AlphaZero-Style-Chess-AI.git
-cd AlphaZero-Style-Chess-AI
+git clone https://github.com/nachikethshetty-art/AlphaZero-Style-Chess-AI-
 ```
 
 ---
