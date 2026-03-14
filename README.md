@@ -1,64 +1,75 @@
-♟️ AlphaZero-Style Chess AI
+# ♟️ AlphaZero-Style Chess AI
 
-Reinforcement Learning • Monte Carlo Tree Search • FastAPI • React • MLflow • AWS
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-DeepLearning-red)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange)
+![MLflow](https://img.shields.io/badge/MLflow-ExperimentTracking-blue)
+![MCTS](https://img.shields.io/badge/MonteCarloTreeSearch-AI-orange)
 
-An end-to-end Chess AI system inspired by AlphaZero-style reinforcement learning where users can play chess against an AI directly in the browser.
-The project combines deep reinforcement learning, Monte Carlo Tree Search (MCTS), neural networks, experiment tracking with MLflow, and full-stack cloud deployment.
+### Reinforcement Learning • Monte Carlo Tree Search • FastAPI • React • MLflow • AWS
 
-The system is deployed on AWS EC2, enabling real-time gameplay through a web interface.
+An end-to-end **Chess AI system inspired by AlphaZero-style reinforcement learning** where users can play chess against an AI directly in the browser.
 
-🌐 Live Application
+The project combines **deep reinforcement learning, Monte Carlo Tree Search (MCTS), neural networks, experiment tracking with MLflow, and full-stack cloud deployment**.
+
+The system is deployed on **AWS EC2**, enabling real-time gameplay through a web interface.
+
+---
+
+# 🌐 Live Application
 
 Frontend (Play the game)
 
+```
 http://13.63.20.15:5173
+```
 
 Backend API (FastAPI documentation)
 
+```
 http://13.63.20.15:8000/docs
-🚀 Key Features
+```
 
-Play chess against an AI directly in the browser
+---
 
-AlphaZero-inspired reinforcement learning architecture
+# 🚀 Key Features
 
-Monte Carlo Tree Search for decision making
+- Play chess against an AI directly in the browser
+- AlphaZero-style reinforcement learning architecture
+- Monte Carlo Tree Search for decision making
+- Neural network board evaluation using PyTorch
+- Adjustable AI difficulty levels
+- FastAPI backend for inference
+- React interactive chess interface
+- Experiment tracking using **MLflow**
+- Cloud deployment on **AWS EC2**
+- Process management using **PM2**
 
-Neural network board evaluation using PyTorch
+---
 
-Adjustable AI difficulty levels
+# 🧠 AI Architecture
 
-FastAPI backend for inference
-
-React interactive chess interface
-
-Experiment tracking using MLflow
-
-Cloud deployment on AWS EC2
-
-Process management using PM2
-
-🧠 AI Architecture
-
-The AI follows an AlphaZero-style reinforcement learning approach.
+The AI follows an **AlphaZero-style reinforcement learning approach**.
 
 Pipeline:
 
-Board state encoded into tensors
+1. Board state encoded into tensors  
+2. Neural network predicts:
 
-Neural network predicts:
+   - **Policy head → move probabilities**
+   - **Value head → board evaluation**
 
-Policy head → move probabilities
+3. Monte Carlo Tree Search explores possible moves  
+4. Best move selected based on visit counts  
+5. AI move returned to frontend  
 
-Value head → board evaluation
+---
 
-Monte Carlo Tree Search explores possible moves
+# 🏗️ System Architecture
 
-Best move selected based on visit counts
-
-AI move returned to frontend
-
-🏗️ System Architecture
+```
 User Browser
      │
      ▼
@@ -75,334 +86,335 @@ Neural Network Evaluation (PyTorch)
      │
      ▼
 Best Move Returned to Frontend
-📂 Project Structure
+```
+
+---
+
+# 📂 Project Structure
+
+```
 AlphaZero-Style-Chess-AI
 │
 ├── backend
-│   ├── server.py              # FastAPI backend
-│   ├── model.py               # Neural network architecture
-│   ├── encoder.py             # Board encoding
-│   ├── move_encoder.py        # Move representation
-│   ├── mcts.py                # Monte Carlo Tree Search
-│   ├── mcts_nn.py             # Neural network MCTS
-│   ├── self_play.py           # Self-play training games
-│   ├── parallel_selfplay.py   # Parallel self-play training
-│   ├── train1.py              # Training pipeline
-│   ├── chess_model.pth        # Trained model weights
+│   ├── server.py
+│   ├── model.py
+│   ├── encoder.py
+│   ├── move_encoder.py
+│   ├── mcts.py
+│   ├── mcts_nn.py
+│   ├── self_play.py
+│   ├── parallel_selfplay.py
+│   ├── train1.py
+│   ├── chess_model.pth
 │   └── requirements.txt
 │
 ├── chess-ui
 │   ├── public
 │   ├── src
-│   │   └── App.jsx            # React chess interface
+│   │   └── App.jsx
 │   ├── package.json
 │   └── vite.config.js
 │
-├── utils                      # Helper utilities
-├── mcts                       # Additional search utilities
+├── utils
+├── mcts
 │
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md
-🎮 Gameplay Flow
+```
 
-User moves a piece on the board
+---
 
-Frontend sends board state (FEN) to backend
+# 🎮 Gameplay Flow
 
-Backend runs Monte Carlo Tree Search
+1. User moves a piece on the board  
+2. Frontend sends board state (FEN) to backend  
+3. Backend runs Monte Carlo Tree Search  
+4. Neural network evaluates positions  
+5. Best move returned to frontend  
+6. Board updates with AI move  
 
-Neural network evaluates positions
+---
 
-Best move returned to frontend
+# ⚙️ Running the Project
 
-Board updates with AI move
+## 1️⃣ Clone Repository
 
-⚙️ Running the Project
-1️⃣ Clone Repository
+```bash
 git clone https://github.com/<your-username>/AlphaZero-Style-Chess-AI.git
 cd AlphaZero-Style-Chess-AI
-2️⃣ Backend Setup
+```
+
+---
+
+## 2️⃣ Backend Setup
+
+```bash
 cd backend
-
 pip install -r requirements.txt
-
 uvicorn server:app --host 0.0.0.0 --port 8000
+```
 
 Backend runs at:
 
+```
 http://localhost:8000
-3️⃣ Frontend Setup (Development)
-cd chess-ui
+```
 
+---
+
+## 3️⃣ Frontend Setup (Development)
+
+```bash
+cd chess-ui
 npm install
 npm run dev
+```
 
 Frontend runs at:
 
+```
 http://localhost:5173
-4️⃣ Production Deployment (AWS + PM2)
+```
+
+---
+
+## 4️⃣ Production Deployment (AWS + PM2)
 
 Build the frontend:
 
+```bash
 npm run build
+```
 
 Install static server:
 
+```bash
 sudo npm install -g serve
+```
 
 Run with PM2:
 
+```bash
 pm2 start serve --name chess-ui -- -s dist -l 5173
 pm2 save
 pm2 startup
-⚙️ Backend (FastAPI + PyTorch)
+```
+
+---
+
+# ⚙️ Backend (FastAPI + PyTorch)
 
 Main endpoint:
 
+```
 POST /ai_move
+```
 
 Example request
 
+```json
 {
   "fen": "board_state",
   "level": 5
 }
+```
 
 Example response
 
+```json
 {
   "move": "e7e5"
 }
+```
 
 Responsibilities:
 
-Encode board states
+- Encode board states  
+- Run MCTS search  
+- Evaluate board using neural network  
+- Return best move  
 
-Run MCTS search
+---
 
-Evaluate board using neural network
-
-Return best move
-
-🖥️ Frontend (React + Vite)
+# 🖥️ Frontend (React + Vite)
 
 Technologies used:
 
-React
-
-Vite
-
-react-chessboard
-
-chess.js
+- React  
+- Vite  
+- react-chessboard  
+- chess.js  
 
 Responsibilities:
 
-Render chessboard
+- Render chessboard  
+- Capture player moves  
+- Communicate with backend API  
+- Display AI moves  
 
-Capture player moves
+---
 
-Communicate with backend API
+# 📊 Experiment Tracking (MLflow)
 
-Display AI moves
-
-📊 Experiment Tracking (MLflow)
-
-The training pipeline uses MLflow to track experiments and model performance.
+The training pipeline uses **MLflow** to track experiments and model performance.
 
 Tracked parameters include:
 
-training iteration
-
-policy loss
-
-value loss
-
-learning rate
-
-training accuracy
-
-model checkpoints
+- training iteration
+- policy loss
+- value loss
+- learning rate
+- training accuracy
+- model checkpoints
 
 Training results are logged to MLflow to compare different models and training configurations.
 
-🧪 Training Progress
+---
+
+# 🧪 Training Progress
 
 Current training statistics:
 
+```
 Total training iterations completed: ~16,000
 MLflow experiment runs: ~5,000
+```
 
 The model has learned basic strategy and positional play but still requires significantly more training to reach stronger playing levels.
 
-⚠️ Training Limitations
+---
 
-Training AlphaZero-style models is extremely computationally intensive.
+# ⚠️ Training Limitations
 
-This project was trained on a standard personal computer, which introduces limitations:
+Training AlphaZero-style models is **extremely computationally intensive**.
 
-Hardware limitations
+This project was trained on a **standard personal computer**, which introduces limitations.
 
-CPU-based training
+### Hardware limitations
 
-No high-end GPU acceleration
+- CPU-based training
+- No high-end GPU acceleration
+- Limited parallel simulations
+- Limited memory capacity
 
-Limited parallel simulations
-
-Limited memory capacity
-
-Training constraints
+### Training constraints
 
 Because of hardware limitations:
 
-self-play generation is slower
+- self-play generation is slower
+- fewer MCTS simulations per move
+- smaller neural network size
+- fewer training iterations
 
-fewer MCTS simulations per move
+Real AlphaZero systems require **massive computational resources**.
 
-smaller neural network size
+---
 
-fewer training iterations
+# 📈 Future Training Goals
 
-Real AlphaZero systems require massive computational resources.
-
-📈 Future Training Goals
-
-To significantly improve the AI strength, the following targets are recommended:
-
+```
 50,000+ training iterations
 millions of self-play games
 larger neural network
 higher MCTS simulations
+```
 
-Achieving this level of training typically requires high-performance hardware or cloud GPU clusters.
+Achieving this level of training typically requires **high-performance hardware or cloud GPU clusters**.
 
-⚡ Improving AI Strength
+---
 
-Several techniques can dramatically increase the AI's ELO.
+# ⚡ Improving AI Strength
 
-1. Increase MCTS simulations
+### Increase MCTS simulations
+
+```
 Current: ~800 simulations
 Recommended: 3000–5000 simulations
+```
 
 More simulations improve decision quality.
 
-2. Train on larger self-play datasets
+Other improvements:
 
-More self-play games improve policy learning and positional understanding.
+- Larger neural networks
+- GPU training
+- Parallel self-play
+- Distributed training
+- Opening books
+- Endgame tablebases
 
-3. Larger neural network architecture
+---
 
-Increase:
+# ⚡ Speed Optimizations
 
-convolution layers
+- parallel Monte Carlo Tree Search
+- GPU neural network inference
+- batching board evaluations
+- caching previously evaluated positions
+- transposition tables
 
-hidden channels
+---
 
-residual blocks
+# ☁️ Cloud Deployment
 
-4. GPU training
-
-Using GPUs can accelerate neural network training by 10-50×.
-
-5. Parallel self-play training
-
-Run multiple self-play games simultaneously to generate more training data.
-
-6. Distributed training
-
-Use multiple machines to train the model simultaneously.
-
-7. Opening books
-
-Integrating opening databases improves early-game play.
-
-8. Endgame tablebases
-
-Precomputed endgame solutions ensure perfect play in late-game scenarios.
-
-⚡ Speed Optimizations
-
-Possible optimizations for faster move generation:
-
-parallel Monte Carlo Tree Search
-
-GPU neural network inference
-
-batching board evaluations
-
-caching previously evaluated positions
-
-transposition tables
-
-☁️ Cloud Deployment
-
-The application is deployed on AWS EC2.
+The application is deployed on **AWS EC2**.
 
 Server components include:
 
-Ubuntu EC2 instance
-
-Python virtual environment
-
-Node.js runtime
-
-PM2 process manager
+- Ubuntu EC2 instance
+- Python virtual environment
+- Node.js runtime
+- PM2 process manager
 
 PM2 ensures the backend and frontend continue running even if the terminal session closes.
 
-🛠️ Tech Stack
+---
+
+# 🛠️ Tech Stack
 
 Frontend
 
-React
-
-Vite
-
-react-chessboard
-
-chess.js
+- React
+- Vite
+- react-chessboard
+- chess.js
 
 Backend
 
-FastAPI
-
-PyTorch
-
-python-chess
+- FastAPI
+- PyTorch
+- python-chess
 
 Experiment Tracking
 
-MLflow
+- MLflow
 
 Infrastructure
 
-AWS EC2
+- AWS EC2
+- PM2
+- Docker
 
-PM2
+---
 
-Docker
+# 👤 Author
 
-👤 Author
-
-Nachiketh
+**Nachiketh**
 
 Aspiring AI Engineer / Data Scientist
 
 This project demonstrates:
 
-reinforcement learning
+- reinforcement learning
+- search algorithms
+- neural network training
+- experiment tracking
+- full-stack AI deployment
+- cloud infrastructure
 
-search algorithms
+---
 
-neural network training
+# ⭐ Project Vision
 
-experiment tracking
-
-full-stack AI deployment
-
-cloud infrastructure
-
-⭐ Project Vision
-
-The goal of this project is to demonstrate how modern AI systems like AlphaZero can be recreated using open-source tools, combining reinforcement learning, search algorithms, and scalable deployment.
+The goal of this project is to demonstrate how **modern AI systems like AlphaZero can be recreated using open-source tools**, combining reinforcement learning, search algorithms, and scalable deployment.
