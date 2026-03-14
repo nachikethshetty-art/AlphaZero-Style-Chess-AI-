@@ -30,23 +30,23 @@ function App() {
 
       try {
 
-          const response = await fetch("http://localhost:8000/ai_move", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            fen: game.fen(),
-            level: level
-          })
-        });
+         const response = await fetch("http://13.63.20.15:8000/ai_move", {
+         method: "POST",
+         headers: {
+         "Content-Type": "application/json",
+  },
+         body: JSON.stringify({
+        fen: game.fen(),
+        level: difficulty,
+  }),
+});
 
-        const data = await response.json();
+const data = await response.json();
 
-        if (data.move) {
-          game.move(data.move);
-          updateGame();
-        }
+if (data.move) {
+  game.move(data.move);
+  setGame(new Chess(game.fen()));
+}
 
       } catch (error) {
 
