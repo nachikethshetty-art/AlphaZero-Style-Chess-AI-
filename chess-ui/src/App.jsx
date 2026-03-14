@@ -9,8 +9,33 @@ const [fen, setFen] = useState(game.fen());
 
 const [mode, setMode] = useState("human");
 const [level, setLevel] = useState(5);
-
 const [status, setStatus] = useState("");
+
+function updateGame() {
+
+```
+setFen(game.fen());
+
+if (game.isCheckmate()) {
+
+  if (game.turn() === "w") {
+    setStatus("Checkmate! Black wins.");
+  } else {
+    setStatus("Checkmate! White wins.");
+  }
+
+} else if (game.isStalemate()) {
+  setStatus("Stalemate!");
+} else if (game.isDraw()) {
+  setStatus("Draw!");
+} else if (game.isCheck()) {
+  setStatus("Check!");
+} else {
+  setStatus("");
+}
+```
+
+}
 
 async function onDrop(sourceSquare, targetSquare) {
 
@@ -65,36 +90,6 @@ return true;
 
 }
 
-function updateGame() {
-
-```
-setFen(game.fen());
-
-if (game.isCheckmate()) {
-
-  if (game.turn() === "w") {
-    setStatus("Checkmate! Black wins.");
-  } else {
-    setStatus("Checkmate! White wins.");
-  }
-
-}
-else if (game.isStalemate()) {
-  setStatus("Stalemate!");
-}
-else if (game.isDraw()) {
-  setStatus("Draw!");
-}
-else if (game.isCheck()) {
-  setStatus("Check!");
-}
-else {
-  setStatus("");
-}
-```
-
-}
-
 function restartGame() {
 
 ```
@@ -109,22 +104,22 @@ return (
 
 ```
 <div style={{
-  background:"#121212",
-  minHeight:"100vh",
-  color:"white",
-  padding:"20px",
-  textAlign:"center"
+  background: "#121212",
+  minHeight: "100vh",
+  color: "white",
+  padding: "20px",
+  textAlign: "center"
 }}>
 
   <h1>Chess AI</h1>
 
-  <div style={{marginBottom:"15px"}}>
+  <div style={{ marginBottom: "15px" }}>
 
     <label>Game Mode: </label>
 
     <select
       value={mode}
-      onChange={(e)=>setMode(e.target.value)}
+      onChange={(e) => setMode(e.target.value)}
     >
       <option value="human">Human vs Human</option>
       <option value="ai">Human vs AI</option>
@@ -134,13 +129,13 @@ return (
 
   {mode === "ai" && (
 
-    <div style={{marginBottom:"15px"}}>
+    <div style={{ marginBottom: "15px" }}>
 
       <label>AI Level: </label>
 
       <select
         value={level}
-        onChange={(e)=>setLevel(parseInt(e.target.value))}
+        onChange={(e) => setLevel(parseInt(e.target.value))}
       >
         {[1,2,3,4,5,6,7,8,9,10].map((lvl)=>(
           <option key={lvl} value={lvl}>
@@ -155,24 +150,28 @@ return (
 
   <button
     onClick={restartGame}
-    style={{padding:"8px 15px", marginBottom:"15px"}}
+    style={{
+      padding: "8px 15px",
+      marginBottom: "15px",
+      cursor: "pointer"
+    }}
   >
     Restart Game
   </button>
 
   {status && (
-
-    <h2 style={{color:"orange"}}>
+    <h2 style={{ color: "orange" }}>
       {status}
     </h2>
-
   )}
 
-  <div style={{display:"flex", justifyContent:"center"}}>
+  <div style={{ display: "flex", justifyContent: "center" }}>
 
     <Chessboard
       position={fen}
-      onPieceDrop={onDrop}
+      onPieceDrop={(sourceSquare, targetSquare) =>
+        onDrop(sourceSquare, targetSquare)
+      }
       boardWidth={550}
     />
 
@@ -182,6 +181,7 @@ return (
 ```
 
 );
+
 }
 
 export default App;
